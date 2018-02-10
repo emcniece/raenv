@@ -3,10 +3,10 @@ settings:
     force: false
     interval: 0s
 server:
-  status: false
-  open: false
-  port: 0
-  host: ""
+  status: true
+  open: true
+  port: 5001
+  host: "localhost"
 schema:
 - name: /Users/emcniece/Code/go/src/raenv
   path: /Users/emcniece/Code/go/src/raenv

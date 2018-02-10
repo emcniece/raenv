@@ -30,7 +30,8 @@ help:
 deps:
 	go get github.com/tools/godep
 	go get github.com/tockins/realize
-	go get github.com/spf13/cobra/cobra
+	go get -u github.com/spf13/viper
+	go get -u github.com/spf13/cobra/cobra
 	go get github.com/mitchellh/go-homedir
 	go get github.com/inconshreveable/mousetrap
 	godep save
