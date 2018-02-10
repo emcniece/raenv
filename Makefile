@@ -14,8 +14,9 @@ help:
 	@echo "IMAGE: $(DOCKER_IMAGE)"
 	@echo "VERSION: $(VERSION)"
 	@echo "---"
-	@echo "make build - build binary for the target environment"
 	@echo "make deps - install build dependencies"
+	@echo "make build - build binary for the target environment"
+	@echo "make watch - monitor & rebuild with Realize"
 	#@echo "make vet - run vet & gofmt checks"
 	#@echo "make test - run tests"
 	@echo "make clean - remove build artifacts"
@@ -26,6 +27,14 @@ help:
 	@echo "make docker - push to Docker repository"
 	@echo "make release - push to latest tag Docker repository"
 
+deps:
+	go get github.com/tools/godep
+	go get github.com/tockins/realize
+	go get github.com/spf13/cobra/cobra
+	go get github.com/mitchellh/go-homedir
+	go get github.com/inconshreveable/mousetrap
+	godep save
+
 build-dir:
 	@rm -rf build && mkdir build
 
@@ -33,13 +42,12 @@ dist-dir:
 	@rm -rf dist && mkdir dist
 
 build: build-dir
-	CGO_ENABLED=0 GOOS=$(PLATFORM) GOARCH=$(ARCH) godep go build raenv -ldflags "-X main.Version=$(VERSION) -X main.GitSHA=$(GITSHA)" -o build/$(PROJECT)-$(PLATFORM)-$(ARCH)
+	go build
+	cp ./raenv ./build
+	go install
 
-deps:
-	go get github.com/tools/godep
-	go get github.com/spf13/cobra/cobra
-	go get github.com/inconshreveable/mousetrap
-	godep save
+watch:
+	realize start
 
 clean:
 	go clean

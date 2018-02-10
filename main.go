@@ -14,7 +14,8 @@
 
 package main
 
-import "./app/cmd"
+// import "./app/cmd"
+import "raenv/app/cmd"
 
 func main() {
 	cmd.Execute()
