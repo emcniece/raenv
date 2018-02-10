@@ -37,7 +37,8 @@ build: build-dir
 
 deps:
 	go get github.com/tools/godep
-	go get -u github.com/spf13/cobra/cobra
+	go get github.com/spf13/cobra/cobra
+	go get github.com/inconshreveable/mousetrap
 	godep save
 
 clean:

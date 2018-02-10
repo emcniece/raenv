@@ -14,7 +14,7 @@
 
 package main
 
-import "app/cmd"
+import "./app/cmd"
 
 func main() {
 	cmd.Execute()
